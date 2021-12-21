@@ -9,14 +9,14 @@ func main() {
 	var provider = data.Provider{}
 
 	// read
-	var readData = provider.GetData()
+	readData, _ := provider.GetData()
 	fmt.Printf("%+v\n", readData)
 
 	// write
 	var writeData = data.JsonData{
-		Str_v:  "Write new data",
-		Bool_v: true,
-		Arr_v:  []int{1, 2, 4, 4},
+		StrV:  "Write new data",
+		BoolV: true,
+		ArrV:  map[int64]int64{0: 1, 1: 2, 2: 4, 3: 4},
 	}
 	err := provider.SetData(writeData)
 	if err != nil {
@@ -24,6 +24,6 @@ func main() {
 	}
 
 	// read again
-	readData = provider.GetData()
+	readData, _ = provider.GetData()
 	fmt.Printf("%+v\n", readData)
 }

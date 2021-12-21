@@ -1,10 +1,10 @@
 {
- "str_v": "Some string",
+ "str_v": "Some string data",
  "bool_v": true,
- "arr_v": [
-  1,
-  2,
-  3,
-  4
- ]
+ "arr_v": {
+  "0": 1,
+  "1": 2,
+  "2": 3,
+  "3": 4
+ }
 }

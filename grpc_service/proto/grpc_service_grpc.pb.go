@@ -14,122 +14,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// GRPCServiceClient is the client API for GRPCService service.
+// GrpcServiceClient is the client API for GrpcService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GRPCServiceClient interface {
+type GrpcServiceClient interface {
 	GetSettings(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	SetSettings(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error)
 }
 
-type gRPCServiceClient struct {
+type grpcServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGRPCServiceClient(cc grpc.ClientConnInterface) GRPCServiceClient {
-	return &gRPCServiceClient{cc}
+func NewGrpcServiceClient(cc grpc.ClientConnInterface) GrpcServiceClient {
+	return &grpcServiceClient{cc}
 }
 
-func (c *gRPCServiceClient) GetSettings(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *grpcServiceClient) GetSettings(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, "/grpc_service.gRPCService/GetSettings", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_service.GrpcService/GetSettings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gRPCServiceClient) SetSettings(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error) {
+func (c *grpcServiceClient) SetSettings(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error) {
 	out := new(SetResponse)
-	err := c.cc.Invoke(ctx, "/grpc_service.gRPCService/SetSettings", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_service.GrpcService/SetSettings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GRPCServiceServer is the server API for GRPCService service.
-// All implementations must embed UnimplementedGRPCServiceServer
+// GrpcServiceServer is the server API for GrpcService service.
+// All implementations must embed UnimplementedGrpcServiceServer
 // for forward compatibility
-type GRPCServiceServer interface {
+type GrpcServiceServer interface {
 	GetSettings(context.Context, *GetRequest) (*GetResponse, error)
 	SetSettings(context.Context, *SetRequest) (*SetResponse, error)
-	mustEmbedUnimplementedGRPCServiceServer()
+	mustEmbedUnimplementedGrpcServiceServer()
 }
 
-// UnimplementedGRPCServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedGRPCServiceServer struct {
+// UnimplementedGrpcServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedGrpcServiceServer struct {
 }
 
-func (UnimplementedGRPCServiceServer) GetSettings(context.Context, *GetRequest) (*GetResponse, error) {
+func (UnimplementedGrpcServiceServer) GetSettings(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSettings not implemented")
 }
-func (UnimplementedGRPCServiceServer) SetSettings(context.Context, *SetRequest) (*SetResponse, error) {
+func (UnimplementedGrpcServiceServer) SetSettings(context.Context, *SetRequest) (*SetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetSettings not implemented")
 }
-func (UnimplementedGRPCServiceServer) mustEmbedUnimplementedGRPCServiceServer() {}
+func (UnimplementedGrpcServiceServer) mustEmbedUnimplementedGrpcServiceServer() {}
 
-// UnsafeGRPCServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GRPCServiceServer will
+// UnsafeGrpcServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GrpcServiceServer will
 // result in compilation errors.
-type UnsafeGRPCServiceServer interface {
-	mustEmbedUnimplementedGRPCServiceServer()
+type UnsafeGrpcServiceServer interface {
+	mustEmbedUnimplementedGrpcServiceServer()
 }
 
-func RegisterGRPCServiceServer(s grpc.ServiceRegistrar, srv GRPCServiceServer) {
-	s.RegisterService(&GRPCService_ServiceDesc, srv)
+func RegisterGrpcServiceServer(s grpc.ServiceRegistrar, srv GrpcServiceServer) {
+	s.RegisterService(&GrpcService_ServiceDesc, srv)
 }
 
-func _GRPCService_GetSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GrpcService_GetSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GRPCServiceServer).GetSettings(ctx, in)
+		return srv.(GrpcServiceServer).GetSettings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_service.gRPCService/GetSettings",
+		FullMethod: "/grpc_service.GrpcService/GetSettings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GRPCServiceServer).GetSettings(ctx, req.(*GetRequest))
+		return srv.(GrpcServiceServer).GetSettings(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GRPCService_SetSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GrpcService_SetSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GRPCServiceServer).SetSettings(ctx, in)
+		return srv.(GrpcServiceServer).SetSettings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_service.gRPCService/SetSettings",
+		FullMethod: "/grpc_service.GrpcService/SetSettings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GRPCServiceServer).SetSettings(ctx, req.(*SetRequest))
+		return srv.(GrpcServiceServer).SetSettings(ctx, req.(*SetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GRPCService_ServiceDesc is the grpc.ServiceDesc for GRPCService service.
+// GrpcService_ServiceDesc is the grpc.ServiceDesc for GrpcService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GRPCService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_service.gRPCService",
-	HandlerType: (*GRPCServiceServer)(nil),
+var GrpcService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "grpc_service.GrpcService",
+	HandlerType: (*GrpcServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetSettings",
-			Handler:    _GRPCService_GetSettings_Handler,
+			Handler:    _GrpcService_GetSettings_Handler,
 		},
 		{
 			MethodName: "SetSettings",
-			Handler:    _GRPCService_SetSettings_Handler,
+			Handler:    _GrpcService_SetSettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

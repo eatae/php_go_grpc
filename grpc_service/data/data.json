@@ -1,0 +1,10 @@
+{
+ "str_v": "Some string",
+ "bool_v": true,
+ "arr_v": [
+  1,
+  2,
+  3,
+  4
+ ]
+}

@@ -27,7 +27,7 @@ message SetResponse {
 }
 
 /* Service */
-service gRPCService {
+service GrpcService {
   rpc GetSettings (GetRequest) returns (GetResponse);
   rpc SetSettings (SetRequest) returns (SetResponse);
 }

@@ -8,6 +8,8 @@
   },
   "autoload": {
     "psr-4": {
+      "Grpc_service\\": "Grpc_service",
+      "GPBMetadata\\": "GPBMetadata"
     }
   }
 }

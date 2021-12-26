@@ -9,7 +9,7 @@ import (
 	p "php_go_grpc/grpc_service/proto"
 )
 
-var port = ":8080"
+var port = ":82"
 
 type GrpcService struct {
 	p.UnimplementedGrpcServiceServer

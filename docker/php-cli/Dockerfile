@@ -1,4 +1,4 @@
-FROM php:8-cli
+FROM php:8.0-cli
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -12,7 +12,13 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    libc-ares-dev \
+    ca-certificates \
+    build-essential \
+    wget \
+    zlib1g-dev \
+    protobuf-compiler
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -37,7 +43,16 @@ RUN pecl install xdebug \
 
 # symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
-    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
+
+
+# gRPC
+RUN pecl install grpc \
+    && docker-php-ext-enable grpc
+
+# protobuf
+RUN pecl install protobuf \
+    && docker-php-ext-enable protobuf
 
 # add php.imi
 ADD ./php.ini /usr/local/etc/php/php.ini

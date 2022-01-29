@@ -43,7 +43,7 @@ RUN pecl install xdebug \
 
 # symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
-    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 
 # gRPC

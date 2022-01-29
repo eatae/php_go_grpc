@@ -27,22 +27,20 @@ services:
       - ../jsonrpc_service:/var/www/jsonrpc_service
       - ../rest_service:/var/www/rest_service
     container_name: ${COMPOSE_PROJECT_NAME}-php-fpm
-    #depends_on:
-      #- postgres
     environment:
           XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=1"
           PHP_IDE_CONFIG: "serverName=Docker"
 
 
-#  php-cli:
-#    build:
-#      context: ./php-cli
-#    volumes:
-#      - ../client_service:/var/www/client_service
-#      - ../jsonrpc_service:/var/www/jsonrpc_service
-#      - ../rest_service:/var/www/rest_service
-#    command: sleep 30000
-#    container_name: ${COMPOSE_PROJECT_NAME}-php-cli
+  php-cli:
+    build:
+      context: ./php-cli
+    volumes:
+      - ../client_service:/var/www/client_service
+      - ../jsonrpc_service:/var/www/jsonrpc_service
+      - ../rest_service:/var/www/rest_service
+    command: sleep 30000
+    container_name: ${COMPOSE_PROJECT_NAME}-php-cli
 
 
 #  grpc-service:

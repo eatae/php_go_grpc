@@ -1,5 +1,12 @@
 ## PHP Go gRPC example
 
+###Run
+```
+cd docker
+docker-compose up --build -d
+```
+
+
 #### Client service (PHP Symfony) <br>
 Listen 8081:81
 

@@ -5,23 +5,23 @@ import (
 	"fmt"
 	"google.golang.org/grpc"
 	"net"
-	"php_go_grpc/dev_box"
 	"php_go_grpc/grpc_service/data"
+	"php_go_grpc/grpc_service/protos"
 )
 
 var port = ":82"
 
 type GrpcService struct {
-	dev_box.UnimplementedGrpcServiceServer
+	proto.UnimplementedGrpcServiceServer
 }
 
 // GetSettings ...
-func (GrpcService) GetSettings(ctx context.Context, req *dev_box.GetRequest) (*dev_box.GetResponse, error) {
+func (GrpcService) GetSettings(ctx context.Context, req *proto.GetRequest) (*proto.GetResponse, error) {
 	var jsonData, err = data.Provider{}.GetData()
 	if nil != err {
 		return nil, err
 	}
-	response := &dev_box.GetResponse{
+	response := &proto.GetResponse{
 		StrV:  jsonData.StrV,
 		BoolV: jsonData.BoolV,
 		ArrV:  jsonData.ArrV,
@@ -31,7 +31,7 @@ func (GrpcService) GetSettings(ctx context.Context, req *dev_box.GetRequest) (*d
 }
 
 // SetSettings ...
-func (GrpcService) SetSettings(ctx context.Context, req *dev_box.SetRequest) (*dev_box.SetResponse, error) {
+func (GrpcService) SetSettings(ctx context.Context, req *proto.SetRequest) (*proto.SetResponse, error) {
 	jsonData := data.JsonData{
 		StrV:  req.StrV,
 		BoolV: req.BoolV,
@@ -41,7 +41,7 @@ func (GrpcService) SetSettings(ctx context.Context, req *dev_box.SetRequest) (*d
 	if nil != err {
 		return nil, err
 	}
-	res := &dev_box.SetResponse{
+	res := &proto.SetResponse{
 		StrV:  jsonData.StrV,
 		BoolV: jsonData.BoolV,
 		ArrV:  jsonData.ArrV,
@@ -52,7 +52,7 @@ func (GrpcService) SetSettings(ctx context.Context, req *dev_box.SetRequest) (*d
 func main() {
 	server := grpc.NewServer()
 	var grpcService GrpcService
-	dev_box.RegisterGrpcServiceServer(server, grpcService)
+	proto.RegisterGrpcServiceServer(server, grpcService)
 	listen, err := net.Listen("tcp", port)
 	if err != nil {
 		fmt.Println(err)

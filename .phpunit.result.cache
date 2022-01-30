@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\AutomobileTest::testDebug":4,"Tests\\AutomobileTest::test":4},"times":{"Tests\\AutomobileTest::testDebug":0.002,"Tests\\AutomobileTest::test":0.004,"Tests\\AutomobileTest::testConstructor":0.004,"Tests\\App\\AutomobileTest::testConstructor":0.004}}

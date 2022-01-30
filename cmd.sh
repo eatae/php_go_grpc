@@ -12,8 +12,20 @@ start(){ echo "New start"; }
 if [[ $1 == "start" ]]; then start; fi
 
 
-# rest_service composer install
-rcompi(){
-  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./rest_service && composer install"
+## rest_service composer install
+#restcompinstall(){
+#  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./rest_service && composer install"
+#}
+#if [[ $1 == "restcompinstall" ]]; then restcompinstall; fi
+#
+## rest_service composer require
+#restcomprequire(){
+#  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./rest_service && composer require $1"
+#}
+#if [[ $1 == "restcomprequire" ]]; then restcomprequire $2; fi
+
+
+pass(){
+  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./$1_service && $2 $3 $4 $5 $6 $7"
 }
-if [[ $1 == "rcompi" ]]; then rcompi; fi
+if [[ $1 == "pass" ]]; then pass $2 $3 $4 $5 $6 $7 $8; fi

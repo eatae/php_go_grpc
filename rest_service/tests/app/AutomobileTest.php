@@ -3,9 +3,9 @@
 namespace Tests\App;
 
 use App\Automobile;
-use App\Values\Color;
-use App\Values\Concern;
-use App\Values\Transmission;
+use App\EnumValue\Color;
+use App\EnumValue\Concern;
+use App\EnumValue\Transmission;
 use PHPUnit\Framework\TestCase;
 
 class AutomobileTest extends TestCase

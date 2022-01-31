@@ -4,18 +4,23 @@ namespace App;
 
 class Router
 {
-    protected string $controllerName;
-    protected string $actionName;
+    protected string $controller;
+    protected string $action;
     protected string $requestMethod;
-    protected string $params;
+    protected array $params;
+    protected array $explodedUri;
 
     public function __construct(string $uri, string $requestMethod)
     {
-        $uriWithOutParams = $this->cleanUri($uri);
+        $uriWithoutParams = $this->cleanUri($uri);
+        $explodedUri = explode('/', $uriWithoutParams);
+        var_dump($uriWithoutParams);
+        var_dump($explodedUri);
 
+        if (count($explodedUri) !== 2) {
+            throw new \LogicException("Invalid variable value \$explodedUri -> ".gettype($explodedUri));
+        }
 
-
-//        $explodedUri = explode('/', $uri);
 //        $this->controllerName = ('App\\'.array_shift($explodedUri) == 'App') ?: 'App\\Controller';
 //        var_dump($explodedUri);
     }
@@ -29,12 +34,13 @@ class Router
     }
 
 
-    public function receiveControllerName(string $uri)
+    protected function collectControllerName()
     {
-        if (true) {
-
+        if (empty($this->explodedUri) || count($this->explodedUri) !== 2) {
         }
     }
+
+
 
 
 }

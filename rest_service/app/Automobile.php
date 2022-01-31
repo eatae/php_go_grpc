@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Values\Color;
-use App\Values\Concern;
-use App\Values\Transmission;
+use App\EnumValue\Color;
+use App\EnumValue\Concern;
+use App\EnumValue\Transmission;
 
 class Automobile
 {
@@ -13,6 +13,12 @@ class Automobile
     private Transmission $transmission;
     private int $enginePower;
 
+    /**
+     * @param Concern $concern
+     * @param Color $color
+     * @param Transmission $transmission
+     * @param int $enginePower
+     */
     public function __construct(Concern $concern, Color $color, Transmission $transmission, int $enginePower)
     {
         $this->concern = $concern;

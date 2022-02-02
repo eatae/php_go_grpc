@@ -4,41 +4,57 @@ namespace App;
 
 class Router
 {
-    protected string $controller;
+    protected Controller $controller;
     protected string $action;
-    protected string $requestMethod;
-    protected array $params;
-    protected array $explodedUri;
+    protected Request $request;
 
-    public function __construct(string $uri, string $requestMethod)
+
+    /**
+     * @param Request $request
+     */
+    public function __construct(Request $request)
     {
-        $uriWithoutParams = $this->cleanUri($uri);
-        $explodedUri = explode('/', $uriWithoutParams);
-        var_dump($uriWithoutParams);
-        var_dump($explodedUri);
-
-        if (count($explodedUri) !== 2) {
-            throw new \LogicException("Invalid variable value \$explodedUri -> ".gettype($explodedUri));
-        }
-
-//        $this->controllerName = ('App\\'.array_shift($explodedUri) == 'App') ?: 'App\\Controller';
-//        var_dump($explodedUri);
+        $this->request = $request;
     }
 
 
 
-    protected function cleanUri(string $uri): string
+    protected function initController(Request $request)
     {
-        $uriAndParams = explode('?', trim($uri, "/"));
-        return array_shift($uriAndParams);
+
     }
 
 
-    protected function collectControllerName()
+
+
+
+
+
+
+    /**
+     * @return Controller
+     */
+    public function getController(): Controller
     {
-        if (empty($this->explodedUri) || count($this->explodedUri) !== 2) {
-        }
+        return $this->controller;
     }
+    /**
+     * @return string
+     */
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+
+
 
 
 

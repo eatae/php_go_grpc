@@ -11,7 +11,10 @@ class Request
     protected RequestMethod $method;
     protected array         $params;
 
-
+    /**
+     * @param string $uri
+     * @param RequestMethod $method
+     */
     public function __construct(string $uri, RequestMethod $method)
     {
         $this->uri = $uri;
@@ -46,6 +49,4 @@ class Request
     {
         return $this->params;
     }
-
-
 }

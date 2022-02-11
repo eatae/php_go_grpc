@@ -15,6 +15,7 @@ class Router
 
     /**
      * @param Request $request
+     * @throws \Exception
      */
     public function __construct(Request $request)
     {
@@ -36,14 +37,11 @@ class Router
             : $this->controllerNamespace.'\\'.$this->defaultControllerName;
 
         if (!class_exists($class)) {
-            throw new \Exception("Controller not found {$class}");
+            throw new \Exception("Controller {$class} not found.");
         }
 
-        return new $class;
+        return new $class($request);
     }
-
-
-
 
 
 

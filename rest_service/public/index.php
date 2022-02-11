@@ -1,6 +1,5 @@
 <?php
 
-use App\AutomobileController;
 use App\Router;
 use App\Request;
 use App\EnumValue\RequestMethod;

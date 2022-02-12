@@ -24,6 +24,11 @@ Listen 8083:83
 
 #### REST service (PHP native) <br>
 Listen 8084:84
+```
+bash cmd.sh pass [service] [command]
 
+# example
+bash cmd.sh pass rest composer require guzzlehttp/psr7
+```
 <br>
 

@@ -41,8 +41,8 @@ class RouterTest extends PHPUnitUtil
      */
     public function testInitController()
     {
-        $request = new Request($this->uri, $this->method);
-        $ctrl = new AutomobileController();
+        $request = new Request($this->method, $this->uri);
+        $ctrl = new AutomobileController($request);
         $sut = new Router($request);
 
         $this->assertEquals($ctrl, $sut->getController());

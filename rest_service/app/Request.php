@@ -3,40 +3,21 @@
 namespace App;
 
 use App\EnumValue\RequestMethod;
+use GuzzleHttp\Psr7\ServerRequest;
 
-class Request
+class Request extends ServerRequest
 {
-    protected string        $uri;
-    protected string        $path;
+
     protected string        $controllerPath;
     protected string        $actionPath;
-    protected RequestMethod $method;
-    protected array         $params;
 
-    /**
-     * @param string $uri
-     * @param RequestMethod $method
-     */
-    public function __construct(string $uri, RequestMethod $method)
-    {
-        $this->uri = $uri;
-        $this->method = $method;
-        $this->path = trim(parse_url($uri, PHP_URL_PATH));
-        $this->controllerPath = $this->receiveControllerPath($this->path);
-        $this->actionPath = $this->receiveActionPath($this->path);
-        $this->params = $this->parseUriParams($uri);
-    }
 
-    /**
-     * Parse URI params
-     * @param string $uri
-     * @return array
-     */
-    protected function parseUriParams(string $uri): array
+    public function __construct(string $method, $uri, array $headers = [], $body = null, string $version = '1.1', array $serverParams = [])
     {
-        $a = [];
-        parse_str(parse_url($uri, PHP_URL_QUERY), $a);
-        return $a;
+        parent::__construct($method, $uri, $headers, $body, $version, $serverParams);
+
+        $this->controllerPath = $this->receiveControllerPath($this->getUri()->getPath());
+        $this->actionPath = $this->receiveActionPath($this->getUri()->getPath());
     }
 
     /**
@@ -64,33 +45,21 @@ class Request
         return $exploded[1] ?? '';
     }
 
-    public function getUri(): string
-    {
-        return $this->uri;
-    }
-
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-
+    /**
+     * @return string
+     */
     public function getControllerPath(): string
     {
         return $this->controllerPath;
     }
 
+    /**
+     * @return string
+     */
     public function getActionPath(): string
     {
         return $this->actionPath;
     }
 
-    public function getMethod(): RequestMethod
-    {
-        return $this->method;
-    }
 
-    public function getParams(): array
-    {
-        return $this->params;
-    }
 }

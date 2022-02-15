@@ -8,9 +8,10 @@ use GuzzleHttp\Psr7\ServerRequest;
 class Router
 {
     protected string $controllerNamespace = 'App\Controller';
+    protected string $controllerPath;
     protected Controller $controller;
     protected string $defaultControllerName = 'AutomobileController';
-    protected string $action;
+    protected string $actionPath;
     protected Request $request;
 
 
@@ -44,7 +45,7 @@ class Router
     }
 
 
-
+    
 
 
     /**

@@ -11,6 +11,9 @@ class RequestTest extends TestCase
 {
     protected static RequestMethod $methodGet;
 
+    /**
+     *
+     */
     public static function setUpBeforeClass(): void
     {
         self::$methodGet = RequestMethod::get(RequestMethod::GET);
@@ -23,9 +26,9 @@ class RequestTest extends TestCase
     public function testConstructor_URLPath()
     {
         $url = "http://localhost:8084/index/index?foo=bar";
-        $sut = new Request($url, self::$methodGet);
+        $sut = Request::fromGlobals();
 
-        $this->assertEquals("/index/index", $sut->getPath());
+        $this->assertEquals("/index/index", $sut->getUri()->getPath());
     }
 
     public function testConstructor_URIPath()

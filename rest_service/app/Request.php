@@ -4,14 +4,22 @@ namespace App;
 
 use App\EnumValue\RequestMethod;
 use GuzzleHttp\Psr7\ServerRequest;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 
 class Request extends ServerRequest
 {
-
     protected string        $controllerPath;
     protected string        $actionPath;
 
-
+    /**
+     * @param string $method
+     * @param $uri
+     * @param array $headers
+     * @param null $body
+     * @param string $version
+     * @param array $serverParams
+     */
     public function __construct(string $method, $uri, array $headers = [], $body = null, string $version = '1.1', array $serverParams = [])
     {
         parent::__construct($method, $uri, $headers, $body, $version, $serverParams);
@@ -54,11 +62,27 @@ class Request extends ServerRequest
     }
 
     /**
+     * @param string $path
+     */
+    public function setControllerPath(string $path): void
+    {
+        $this->controllerPath = $this->receiveControllerPath($path);
+    }
+
+    /**
      * @return string
      */
     public function getActionPath(): string
     {
         return $this->actionPath;
+    }
+
+    /**
+     * @param string $path
+     */
+    public function setActionPath(string $path): void
+    {
+        $this->actionPath = $this->receiveActionPath($path);
     }
 
 

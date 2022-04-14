@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Request;
-use http\Client\Response;
 
 class Controller
 {
@@ -13,8 +12,9 @@ class Controller
     {
         $this->request = $request;
     }
+    
 
-    public function run(string $action): Response
+    public function run(string $action)
     {
         $action = 'action'.ucfirst($action);
         if (!method_exists($this, $action)) {

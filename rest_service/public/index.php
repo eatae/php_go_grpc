@@ -1,15 +1,14 @@
 <?php
-
-use App\Router;
-use App\Request;
-use App\EnumValue\RequestMethod;
-
 require dirname(__DIR__).'/vendor/autoload.php';
 
+use App\Router;
+use GuzzleHttp\Psr7\ServerRequest;
+
+
 (function (){
-    var_dump($_SERVER);
-    $requestMethod = RequestMethod::byValue($_SERVER['REQUEST_METHOD']);
-    $request = new Request($_SERVER['REQUEST_URI'], $requestMethod);
+    $request = ServerRequest::fromGlobals();
+
+    var_dump($request);
 
     $r = new Router($request);
     var_dump($r);

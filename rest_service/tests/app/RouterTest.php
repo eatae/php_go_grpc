@@ -36,18 +36,21 @@ class RouterTest extends PHPUnitUtil
         $this->assertEquals($request, $sut->getRequest());
     }
 
-    /*
-     * testInitController
+    /**
+     * initController
      */
     public function testInitController()
     {
-        $request = new Request($this->uri, $this->method);
-        $ctrl = new AutomobileController();
+        $request = new Request($this->method, $this->uri);
+        $ctrl = new AutomobileController($request);
         $sut = new Router($request);
 
         $this->assertEquals($ctrl, $sut->getController());
     }
 
+    /**
+     * initController
+     */
     public function testInitController_EmptyUri()
     {
         $request = new Request('/', $this->method);
@@ -57,6 +60,9 @@ class RouterTest extends PHPUnitUtil
         $this->assertEquals($ctrl, $sut->getController());
     }
 
+    /**
+     * initController
+     */
     public function testInitController_NotFoundClass()
     {
         $request = new Request('/foo', $this->method);

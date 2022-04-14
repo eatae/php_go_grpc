@@ -3,13 +3,15 @@
 namespace App;
 
 use App\Controller\Controller;
+use GuzzleHttp\Psr7\ServerRequest;
 
 class Router
 {
     protected string $controllerNamespace = 'App\Controller';
+    protected string $controllerPath;
     protected Controller $controller;
     protected string $defaultControllerName = 'AutomobileController';
-    protected string $action;
+    protected string $actionPath;
     protected Request $request;
 
 
@@ -25,14 +27,13 @@ class Router
 
 
     /**
-     * Init Controller
      * @param Request $request
      * @return Controller
      * @throws \Exception
      */
     protected function initController(Request $request): Controller
     {
-        $class = (!empty($request->getControllerPath()))
+        $class = ( !empty($request->getControllerPath()) )
             ? $this->controllerNamespace.'\\'.ucfirst($request->getControllerPath()) . 'Controller'
             : $this->controllerNamespace.'\\'.$this->defaultControllerName;
 
@@ -44,7 +45,7 @@ class Router
     }
 
 
-
+    
 
 
     /**

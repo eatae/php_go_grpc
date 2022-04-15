@@ -39,6 +39,11 @@ class RequestTest extends TestCase
         $this->assertEquals("/index/index", $sut->getPath());
     }
 
+    public function testFoo()
+    {
+        self::assertEquals('foo', 'foo');
+    }
+
     public function testConstructor_ShortUriPath()
     {
         $url = "/";

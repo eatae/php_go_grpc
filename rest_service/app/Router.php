@@ -14,7 +14,6 @@ class Router
     protected string $actionPath;
     protected Request $request;
 
-
     /**
      * @param Request $request
      * @throws \Exception
@@ -24,7 +23,6 @@ class Router
         $this->request = $request;
         $this->controller = $this->initController($request);
     }
-
 
     /**
      * @param Request $request

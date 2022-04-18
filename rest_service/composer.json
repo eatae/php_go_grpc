@@ -2,6 +2,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
+      "Infrastructure\\": "infrastructure/",
       "Tests\\": "tests/",
       "Tests\\App\\": "tests/app/"
     }

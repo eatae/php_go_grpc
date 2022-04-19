@@ -7,5 +7,5 @@ interface Instructor extends \Throwable
 {
     public function add(Instruction ...$instruction): self;
 
-    public function work(): void;
+    public function followInstructions(): void;
 }

@@ -8,23 +8,31 @@ use PHPUnit\Framework\Exception;
 class ThrowableInstructor extends Exception
     implements Instructor
 {
-    /**
-     * @var Instruction[]
-     */
+    /** @var Instruction[] */
     protected array $instructions = [];
 
     /**
-     * @param Instruction[] $instructions
+     * @param Instruction ...$instructions
      */
     public function add(Instruction ...$instructions): self
     {
-        array_merge($this->instructions, $instructions);
+        $this->instructions = array_merge($this->instructions, $instructions);
 
         return $this;
     }
 
-    public function work(): void
+    public function followInstructions(): void
     {
-        // TODO: Implement work() method.
+        foreach($this->instructions as $i) {
+            $i->execute();
+        }
+    }
+
+    /**
+     * @return Instruction[]
+     */
+    public function getInstructions(): array
+    {
+        return $this->instructions;
     }
 }

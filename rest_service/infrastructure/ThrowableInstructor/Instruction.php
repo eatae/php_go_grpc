@@ -5,5 +5,5 @@ namespace Infrastructure\ThrowableInstructor;
 
 interface Instruction
 {
-    public function follow(): void;
+    public function execute(): void;
 }

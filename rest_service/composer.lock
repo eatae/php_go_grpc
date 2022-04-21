@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b504ef6062b2a883a829a05172119f06",
+    "content-hash": "155179c174ed18c699c98742558dc2a3",
     "packages": [
+        {
+            "name": "eatae/throwable-instructor",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eatae/throwable-instructor.git",
+                "reference": "9169a4d460d42170a9bd638b64972a72e99f1979"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eatae/throwable-instructor/zipball/9169a4d460d42170a9bd638b64972a72e99f1979",
+                "reference": "9169a4d460d42170a9bd638b64972a72e99f1979",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eatae\\ThrowableInstructor\\": "src/",
+                    "Eatae\\ThrowableInstructor\\Tests\\": "tests/",
+                    "Eatae\\ThrowableInstructor\\Example\\": "example/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "eatae",
+                    "email": "al-loco@mail.ru"
+                }
+            ],
+            "description": "Action for exception",
+            "support": {
+                "issues": "https://github.com/eatae/throwable-instructor/issues",
+                "source": "https://github.com/eatae/throwable-instructor/tree/main"
+            },
+            "time": "2022-04-21T17:03:43+00:00"
+        },
         {
             "name": "guzzlehttp/psr7",
             "version": "2.1.0",
@@ -2443,7 +2486,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "eatae/throwable-instructor": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

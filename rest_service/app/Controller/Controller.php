@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Request;
+use App\RequestV2;
 
 class Controller
 {
-    protected Request $request;
+    protected RequestV2 $request;
 
-    public function __construct(Request $request)
+    public function __construct(RequestV2 $request)
     {
         $this->request = $request;
     }
@@ -23,9 +23,9 @@ class Controller
     }
 
     /**
-     * @return Request
+     * @return RequestV2
      */
-    public function getRequest(): Request
+    public function getRequest(): RequestV2
     {
         return $this->request;
     }

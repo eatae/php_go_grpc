@@ -3,15 +3,16 @@ require dirname(__DIR__).'/vendor/autoload.php';
 
 use App\Router;
 use GuzzleHttp\Psr7\ServerRequest;
+use App\PathReceiver;
 
 
 (function (){
     $request = ServerRequest::fromGlobals();
-
-    var_dump($request);
-
-    $r = new Router($request);
+    $pathReceiver = new PathReceiver($request);
+    $r = new Router($pathReceiver);
     var_dump($r);
+
+
 })();
 
 

@@ -3,32 +3,43 @@
 namespace App;
 
 use App\Controller\Controller;
-use Psr\Http\Message\ServerRequestInterface;
+use GuzzleHttp\Psr7\ServerRequest;
 
-class Router
+class Router_v1
 {
     protected string $controllerNamespace = 'App\Controller';
+    protected string $controllerPath;
     protected Controller $controller;
     protected string $defaultControllerName = 'AutomobileController';
-    protected ServerRequestInterface $request;
+    protected string $actionPath;
+    protected RequestV2 $request;
 
-    public function __construct(PathReceiverInterface $pathReceiver)
+    /**
+     * @param RequestV2 $request
+     * @throws \Exception
+     */
+    public function __construct(ServerRequest $request)
     {
-        $this->request = $pathReceiver->getRequest();
-        $this->controller = $this->createController($pathReceiver);
+        $this->request = $request;
+        $this->controller = $this->initController($request);
     }
 
-    protected function createController(PathReceiverInterface $pathReceiver): Controller
+    /**
+     * @param RequestV2 $request
+     * @return Controller
+     * @throws \Exception
+     */
+    protected function initController(RequestV2 $request): Controller
     {
-        $class = ( !empty($pathReceiver->getControllerPath()) )
-            ? $this->controllerNamespace.'\\'.ucfirst($pathReceiver->getControllerPath()) . 'Controller'
+        $class = ( !empty($request->getControllerPath()) )
+            ? $this->controllerNamespace.'\\'.ucfirst($request->getControllerPath()) . 'Controller'
             : $this->controllerNamespace.'\\'.$this->defaultControllerName;
 
         if (!class_exists($class)) {
             throw new \Exception("Controller {$class} not found.");
         }
 
-        return new $class($pathReceiver->getRequest());
+        return new $class($request);
     }
 
 

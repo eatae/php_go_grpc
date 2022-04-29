@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
 
-class Request extends ServerRequest
+class RequestV2 extends ServerRequest
 {
     protected string        $controllerPath;
     protected string        $actionPath;

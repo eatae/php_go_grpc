@@ -4,7 +4,7 @@ namespace Tests\App;
 
 use App\Controller\AutomobileController;
 use App\EnumValue\RequestMethod;
-use App\Request;
+use App\RequestV2;
 use App\Router;
 use Tests\PHPUnitUtil;
 
@@ -21,7 +21,7 @@ class RouterTest extends PHPUnitUtil
     /**** TEST ****/
     public function test()
     {
-        $request = new Request($this->uri, $this->method);
+        $request = new RequestV2($this->uri, $this->method);
 
         $sut = new Router($request);
 
@@ -30,7 +30,7 @@ class RouterTest extends PHPUnitUtil
 
     public function testConstructor()
     {
-        $request = new Request($this->uri, $this->method);
+        $request = new RequestV2($this->uri, $this->method);
         $sut = new Router($request);
 
         $this->assertEquals($request, $sut->getRequest());
@@ -41,7 +41,7 @@ class RouterTest extends PHPUnitUtil
      */
     public function testInitController()
     {
-        $request = new Request($this->method, $this->uri);
+        $request = new RequestV2($this->method, $this->uri);
         $ctrl = new AutomobileController($request);
         $sut = new Router($request);
 
@@ -53,7 +53,7 @@ class RouterTest extends PHPUnitUtil
      */
     public function testInitController_EmptyUri()
     {
-        $request = new Request('/', $this->method);
+        $request = new RequestV2('/', $this->method);
         $ctrl = new AutomobileController();
         $sut = new Router($request);
 
@@ -65,7 +65,7 @@ class RouterTest extends PHPUnitUtil
      */
     public function testInitController_NotFoundClass()
     {
-        $request = new Request('/foo', $this->method);
+        $request = new RequestV2('/foo', $this->method);
 
         $this->expectException(\Exception::class);
         new Router($request);

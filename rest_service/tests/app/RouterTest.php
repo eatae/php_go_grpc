@@ -4,49 +4,29 @@ namespace Tests\App;
 
 use App\Controller\AutomobileController;
 use App\EnumValue\RequestMethod;
-use App\RequestV2;
+use App\PathReceiver;
+use Psr\Http\Message\ServerRequestInterface;
 use App\Router;
 use Tests\PHPUnitUtil;
+use GuzzleHttp\Psr7\ServerRequest;
 
 class RouterTest extends PHPUnitUtil
 {
-    private string $uri = '/automobile/index?foo=bar';
-    private RequestMethod $method;
-
-    protected function setUp(): void
-    {
-        $this->method = RequestMethod::byValue('GET');
-    }
-
-    /**** TEST ****/
-    public function test()
-    {
-        $request = new RequestV2($this->uri, $this->method);
-
-        $sut = new Router($request);
-
-        var_dump($sut);
-    }
-
-    public function testConstructor()
-    {
-        $request = new RequestV2($this->uri, $this->method);
-        $sut = new Router($request);
-
-        $this->assertEquals($request, $sut->getRequest());
-    }
+    private ServerRequestInterface $request;
 
     /**
-     * initController
+     * Create action
      */
-    public function testInitController()
+    public function testCreateAction()
     {
-        $request = new RequestV2($this->method, $this->uri);
-        $ctrl = new AutomobileController($request);
-        $sut = new Router($request);
+        $request = new ServerRequest('GET', "http://localhost:8084/foo/bar");
+        $pathReceiver = new PathReceiver($request);
 
-        $this->assertEquals($ctrl, $sut->getController());
     }
+
+
+
+
 
     /**
      * initController

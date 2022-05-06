@@ -2,31 +2,31 @@
 
 namespace App\Controller;
 
-use App\RequestV2;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Controller
 {
-    protected RequestV2 $request;
+    protected ServerRequestInterface $request;
+    protected string $actionDefault = 'actionDefault';
 
-    public function __construct(RequestV2 $request)
+    public function __construct(ServerRequestInterface $request)
     {
         $this->request = $request;
     }
-    
 
-    public function run(string $action)
+    public function run(?string $action)
     {
+        if ($action == null) {
+
+        }
         $action = 'action'.ucfirst($action);
         if (!method_exists($this, $action)) {
             throw new \Exception("Action {$action} does not exists.");
         }
     }
 
-    /**
-     * @return RequestV2
-     */
-    public function getRequest(): RequestV2
+    public function getActionDefault()
     {
-        return $this->request;
+        return $this->actionDefault;
     }
 }

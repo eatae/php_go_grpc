@@ -6,11 +6,12 @@ use GuzzleHttp\Psr7\ServerRequest;
 use App\PathReceiver;
 
 
-(function (){
+(function () {
     $request = ServerRequest::fromGlobals();
     $pathReceiver = new PathReceiver($request);
-    $r = new Router($pathReceiver);
-    var_dump($r);
+    $router = new Router($pathReceiver);
+    $router->getController()->run($pathReceiver->getActionPath());
+    var_dump($router);
 
 
 })();

@@ -17,10 +17,13 @@ class Router
     /**
      * @throws \Exception
      */
-    public function __construct(PathReceiverInterface $pathReceiver)
+    public function __construct(PathReceiverInterface $pathReceiver, string $controllerNamespace = '', string $defaultControllerName = '')
     {
         $this->pathReceiver = $pathReceiver;
         $this->request = $pathReceiver->getRequest();
+        $this->controllerNamespace = $controllerNamespace ?: $this->controllerNamespace;
+        $this->defaultControllerName = $defaultControllerName ?: $this->defaultControllerName;
+
         $this->controller = $this->createController($pathReceiver);
         $this->action = $this->createAction($pathReceiver);
     }
@@ -52,6 +55,8 @@ class Router
 
         if (!empty($pathReceiver->getActionPath())) {
             $actionName = 'action'.ucfirst($pathReceiver->getActionPath());
+        } else {
+            $actionName = $this->controller->getActionDefault();
         }
         if (!method_exists($this->controller, $actionName)) {
             throw new \Exception(

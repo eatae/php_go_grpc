@@ -2,54 +2,72 @@
 
 namespace Tests\App;
 
-use App\Controller\AutomobileController;
-use App\EnumValue\RequestMethod;
 use App\PathReceiver;
-use Psr\Http\Message\ServerRequestInterface;
 use App\Router;
 use Tests\PHPUnitUtil;
 use GuzzleHttp\Psr7\ServerRequest;
 
 class RouterTest extends PHPUnitUtil
 {
-    private ServerRequestInterface $request;
 
     /**
-     * Create action
+     * Get Controller
      */
-    public function testCreateAction()
+    public function testGetController()
     {
-        $request = new ServerRequest('GET', "http://localhost:8084/foo/bar");
+        $request = new ServerRequest('GET', "http://localhost:8084/mock/foo");
         $pathReceiver = new PathReceiver($request);
 
-    }
+        $sut = new Router($pathReceiver, 'Tests\App\Controller');
 
-
-
-
-
-    /**
-     * initController
-     */
-    public function testInitController_EmptyUri()
-    {
-        $request = new RequestV2('/', $this->method);
-        $ctrl = new AutomobileController();
-        $sut = new Router($request);
-
-        $this->assertEquals($ctrl, $sut->getController());
+        $this->assertInstanceOf('Tests\App\Controller\MockController', $sut->getController());
     }
 
     /**
-     * initController
+     * Get default Controller
      */
-    public function testInitController_NotFoundClass()
+    public function testGetDefaultController()
     {
-        $request = new RequestV2('/foo', $this->method);
+        $request = new ServerRequest('GET', "http://localhost:8084");
+        $pathReceiver = new PathReceiver($request);
 
-        $this->expectException(\Exception::class);
-        new Router($request);
+        $sut = new Router(
+            $pathReceiver,
+            'Tests\App\Controller',
+            'MockController',
+        );
+
+        $this->assertInstanceOf('Tests\App\Controller\MockController', $sut->getController());
     }
 
+    /**
+     * Get action
+     */
+    public function testGetAction()
+    {
+        $request = new ServerRequest('GET', "http://localhost:8084/mock/foo");
+        $pathReceiver = new PathReceiver($request);
 
+        $sut = new Router($pathReceiver, 'Tests\App\Controller');
+
+        $this->assertEquals('actionFoo', $sut->getAction());
+    }
+
+    /**
+     * Get default action
+     */
+    public function testGetDefaultAction()
+    {
+        $request = new ServerRequest('GET', "http://localhost:8084");
+        $pathReceiver = new PathReceiver($request);
+
+        $sut = new Router(
+            $pathReceiver,
+            'Tests\App\Controller',
+            'MockController',
+        );
+        $defaultAction = $sut->getController()->getActionDefault();
+
+        $this->assertEquals($defaultAction, $sut->getAction());
+    }
 }

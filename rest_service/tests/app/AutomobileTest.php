@@ -23,4 +23,3 @@ class AutomobileTest extends TestCase
         $this->assertEquals($transmission, $sut->getTransmission());
     }
 }
-

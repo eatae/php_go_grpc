@@ -14,18 +14,7 @@ class Controller
         $this->request = $request;
     }
 
-    public function run(?string $action)
-    {
-        if ($action == null) {
-
-        }
-        $action = 'action'.ucfirst($action);
-        if (!method_exists($this, $action)) {
-            throw new \Exception("Action {$action} does not exists.");
-        }
-    }
-
-    public function getActionDefault()
+    public function getActionDefault(): string
     {
         return $this->actionDefault;
     }

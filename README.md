@@ -32,3 +32,16 @@ bash cmd.sh pass rest composer require guzzlehttp/psr7
 ```
 <br>
 
+
+### Automobile <br><br>
+
+
+#### Code Style fix <br>
+
+run friendsofphp/php-cs-fixer:
+
+```
+bash cmd.sh automobile cs-fix
+```
+<br>
+

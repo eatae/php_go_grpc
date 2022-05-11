@@ -26,7 +26,8 @@ class Automobile
         Concern $concern,
         Color $color,
         Transmission
-        $transmission, int
+        $transmission,
+        int
         $enginePower
     ) {
         $this->name = $name;

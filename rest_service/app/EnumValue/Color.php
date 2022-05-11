@@ -6,10 +6,10 @@ use MabeEnum\Enum;
 
 class Color extends Enum
 {
-    const WHITE     = 'white';
-    const RED       = 'red';
-    const BLACK     = 'black';
-    const GREEN     = 'green';
-    const YELLOW    = 'yellow';
-    const BLUE      = 'blue';
+    public const WHITE     = 'white';
+    public const RED       = 'red';
+    public const BLACK     = 'black';
+    public const GREEN     = 'green';
+    public const YELLOW    = 'yellow';
+    public const BLUE      = 'blue';
 }

@@ -34,7 +34,7 @@ class Router
      */
     protected function createController(PathReceiverInterface $pathReceiver): Controller
     {
-        $class = ( !empty($pathReceiver->getControllerPath()) )
+        $class = (!empty($pathReceiver->getControllerPath()))
             ? $this->controllerNamespace.'\\'.ucfirst($pathReceiver->getControllerPath()) . 'Controller'
             : $this->controllerNamespace.'\\'.$this->defaultControllerName;
 
@@ -81,5 +81,4 @@ class Router
     {
         return $this->request;
     }
-
 }

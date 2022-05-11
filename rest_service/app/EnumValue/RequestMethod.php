@@ -6,9 +6,9 @@ use MabeEnum\Enum;
 
 class RequestMethod extends Enum
 {
-    const GET    = 'GET';
-    const POST   = 'POST';
-    const PUT    = 'PUT';
-    const PATCH  = 'PATCH';
-    const DELETE = 'DELETE';
+    public const GET    = 'GET';
+    public const POST   = 'POST';
+    public const PUT    = 'PUT';
+    public const PATCH  = 'PATCH';
+    public const DELETE = 'DELETE';
 }

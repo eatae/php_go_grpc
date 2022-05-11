@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class AutomobileTest extends TestCase
 {
-
     public function testConstructor()
     {
         $concern = Concern::get(Concern::LEXUS);

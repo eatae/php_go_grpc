@@ -17,11 +17,11 @@ class PHPUnitUtil extends TestCase
      * @return \ReflectionMethod The method you asked for
      * @throws \ReflectionException
      */
-    public static function getPrivateMethod($obj, $name): \ReflectionMethod {
+    public static function getPrivateMethod($obj, $name): \ReflectionMethod
+    {
         $class = new \ReflectionClass($obj);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;
     }
-
 }

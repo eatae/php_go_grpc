@@ -6,7 +6,6 @@ use App\RequestV2;
 use PHPUnit\Framework\TestCase;
 use App\EnumValue\RequestMethod;
 
-
 class RequestTest extends TestCase
 {
     protected static RequestMethod $methodGet;
@@ -59,21 +58,21 @@ class RequestTest extends TestCase
     {
         $uri = "/index/index?foo=bar";
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( ["foo"=>"bar"], $sut->getParams());
+        $this->assertEquals(["foo"=>"bar"], $sut->getParams());
     }
 
     public function testParseUriParams_URL()
     {
         $url = "http://localhost:8084/index/index?foo=bar";
         $sut = new RequestV2($url, self::$methodGet);
-        $this->assertEquals( ["foo"=>"bar"], $sut->getParams());
+        $this->assertEquals(["foo"=>"bar"], $sut->getParams());
     }
 
     public function testParseUriParams_withOutParams()
     {
         $uri = "/index?";
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( [], $sut->getParams());
+        $this->assertEquals([], $sut->getParams());
     }
 
     /**
@@ -83,14 +82,14 @@ class RequestTest extends TestCase
     {
         $uri = "/automobile/index?foo=bar";
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( 'automobile', $sut->getControllerPath());
+        $this->assertEquals('automobile', $sut->getControllerPath());
     }
 
     public function testReceiveControllerPath_Empty()
     {
         $uri = '';
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( '', $sut->getControllerPath());
+        $this->assertEquals('', $sut->getControllerPath());
     }
 
     /**
@@ -100,14 +99,14 @@ class RequestTest extends TestCase
     {
         $uri = "/automobile/index?foo=bar";
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( 'index', $sut->getActionPath());
+        $this->assertEquals('index', $sut->getActionPath());
     }
 
     public function testReceiveActionPath_Empty()
     {
         $uri = "/automobile";
         $sut = new RequestV2($uri, self::$methodGet);
-        $this->assertEquals( '', $sut->getActionPath());
+        $this->assertEquals('', $sut->getActionPath());
     }
 
 
@@ -140,6 +139,4 @@ class RequestTest extends TestCase
 //            $sut, [$uri]
 //        ));
 //    }
-
-
 }

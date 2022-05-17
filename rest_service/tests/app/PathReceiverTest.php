@@ -44,6 +44,4 @@ class PathReceiverTest extends TestCase
 
         $this->assertEquals('', $sut->getActionPath());
     }
-
-
 }

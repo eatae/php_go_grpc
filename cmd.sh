@@ -26,6 +26,12 @@ if [[ $1 == "start" ]]; then start; fi
 
 
 pass(){
-  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./$1_service && $2 $3 $4 $5 $6 $7"
+  cd ./docker && docker exec -it php_go_grpc-php-cli bash -c "cd ./$1_service && $2 $3 $4 $5 $6 $7"
 }
 if [[ $1 == "pass" ]]; then pass $2 $3 $4 $5 $6 $7 $8; fi
+
+
+automobile(){
+  cd ./docker && docker exec -i php_go_grpc-php-cli bash -c "cd ./rest_service && $1 $2 $3 $4 $5 $6 $7"
+}
+if [[ $1 == "automobile" && $2 == "cs-fix" ]]; then automobile "./vendor/bin/php-cs-fixer" "fix"; fi

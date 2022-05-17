@@ -6,7 +6,7 @@ use MabeEnum\Enum;
 
 class Transmission extends Enum
 {
-    const AUTOMATIC = 'automatic';
-    const MECHANICAL = 'mechanical';
-    const ROBOT = 'robot';
+    public const AUTOMATIC = 'automatic';
+    public const MECHANICAL = 'mechanical';
+    public const ROBOT = 'robot';
 }

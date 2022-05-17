@@ -9,7 +9,6 @@ use GuzzleHttp\Psr7\ServerRequest;
 
 class RouterTest extends PHPUnitUtil
 {
-
     /**
      * Get Controller
      */

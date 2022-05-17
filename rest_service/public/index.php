@@ -1,11 +1,11 @@
 <?php
+
 require dirname(__DIR__).'/vendor/autoload.php';
 
 use App\Router;
 use App\PathReceiver;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\ResponseInterface;
-
 
 (function () {
     $request = ServerRequest::fromGlobals();
@@ -16,12 +16,7 @@ use Psr\Http\Message\ResponseInterface;
     $action = $router->getAction();
 
     /** @var ResponseInterface $response */
-     $response = $controller->$action();
+    $response = $controller->$action();
 
-     echo $response->getBody();
+    echo $response->getBody();
 })();
-
-
-
-
-

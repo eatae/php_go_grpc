@@ -58,5 +58,4 @@ class RequestV2 extends ServerRequest
     {
         return $this->actionPath;
     }
-
 }

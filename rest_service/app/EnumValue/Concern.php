@@ -6,9 +6,9 @@ use MabeEnum\Enum;
 
 class Concern extends Enum
 {
-    const TOYOTA    = 'toyota';
-    const LEXUS     = 'lexus';
-    const BMV       = 'bmv';
-    const SKODA     = 'skoda';
-    const LADA      = 'lada';
+    public const TOYOTA    = 'toyota';
+    public const LEXUS     = 'lexus';
+    public const BMV       = 'bmv';
+    public const SKODA     = 'skoda';
+    public const LADA      = 'lada';
 }
